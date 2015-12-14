@@ -1,0 +1,21 @@
+{
+  "name": "sterling/commentable",
+  "description": "Add comments to objects",
+  "type": "Library",
+  "require": {
+    "illuminate/support": "^5.3@dev"
+  },
+  "autoload": {
+    "psr-0": {
+      "Sterling\\Commentable": "src/"
+    }
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tom Sinclair",
+      "email": "tsinclair@sterlingsolutions.co.uk"
+    }
+  ],
+  "minimum-stability": "dev"
+}
