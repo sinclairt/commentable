@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Contracts\Comment as CommentInterface;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Sterling\Track\TrackTrait;
 
 class Comment extends Model implements CommentInterface
 {
-    use SoftDeletes, TrackTrait
+    use SoftDeletes, TrackTrait;
 
     /**
      * The attributes that are mass assignable.
