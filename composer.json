@@ -3,7 +3,7 @@
   "description": "Add comments to objects",
   "type": "Library",
   "require": {
-    "illuminate/support": "^5.3@dev"
+    "illuminate/support": "^5.1"
   },
   "autoload": {
     "psr-0": {
