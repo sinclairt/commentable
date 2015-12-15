@@ -11,7 +11,7 @@
 
 ``` composer require sterling/commentable ```
 
-Add ``` Sterling\Commentable\CommentableServiceProvider ``` to ``` app\config ```
+Add ``` Sterling\Commentable\CommentableServiceProvider::class ``` to ``` config\app.php ```
 
 ``` php artisan vendor:publish ``` 
 
