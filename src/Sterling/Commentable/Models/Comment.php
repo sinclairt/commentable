@@ -16,7 +16,7 @@ class Comment extends Model implements CommentInterface
      *
      * @var array
      */
-    protected $fillable = [ 'text', 'user_id' ];
+    protected $fillable = [ 'text', 'user_id', 'resolution' ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -38,5 +38,48 @@ class Comment extends Model implements CommentInterface
     public function user()
     {
         return $this->belongsTo(config('auth.model'));
+    }
+
+    public function __call($name, $arguments)
+    {
+        try
+        {
+            if(method_exists($this, $name))
+                return call_user_func_array($name, $arguments);
+
+            $model = app(studly_case(str_singular($name)));
+
+            $model = new \ReflectionClass($model);
+
+            return $this->morphedByMany($model->getName(), 'commentable');
+        }
+        catch (Exception $e)
+        {
+            return parent::__call($name, $arguments);
+        }
+    }
+
+    public static function __callStatic($name, $arguments)
+    {
+        return self::__call($name, $arguments);
+    }
+
+    public function __get($name)
+    {
+        try
+        {
+            if(method_exists($this, $name))
+                return call_user_func($name);
+
+            $model = app(studly_case(str_singular($name)));
+
+            $model = new \ReflectionClass($model);
+
+            return $this->relations[$name] = $this->morphedByMany($model->getName(), 'commentable')->getResults();
+        }
+        catch (Exception $e)
+        {
+            return parent::__get($name);
+        }
     }
 }

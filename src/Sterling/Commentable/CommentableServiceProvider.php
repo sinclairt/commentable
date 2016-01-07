@@ -26,8 +26,8 @@ class CommentableServiceProvider extends ServiceProvider
         ]);
 
         $this->publishes([
-            __DIR__ . '/Models/'           => app_path('Models'),
-            __DIR__ . '/Contracts/'        => app_path('Contracts'),
+            __DIR__ . '/Models/'              => app_path('Models'),
+            __DIR__ . '/Contracts/'           => app_path('Contracts'),
             __DIR__ . '/../../../migrations/' => database_path('migrations')
         ]);
     }
