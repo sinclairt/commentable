@@ -1,6 +1,6 @@
 <?php namespace Sterling\Commentable;
 
-use App\Facades\Comment;
+use Sinclair\Commentable\Comment;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 
@@ -39,9 +39,9 @@ class CommentableServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Contracts\Comment', 'App\Models\Comment');
+        $this->app->bind('Sinclair\Commentable\Contracts\Comment', 'Sinclair\Commentable\Models\Comment');
 
-        $this->app->bind('Comment', 'App\Contracts\Comment');
+        $this->app->bind('Comment', 'Sinclair\Commentable\Contracts\Comment');
     }
 
     /**

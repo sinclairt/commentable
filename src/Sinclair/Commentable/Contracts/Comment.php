@@ -1,4 +1,4 @@
-<?php namespace App\Contracts;
+<?php namespace Sinclair\Commentable\Contracts;
 
 interface Comment
 {

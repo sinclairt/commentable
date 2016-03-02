@@ -9,9 +9,9 @@
 
 ### Instructions ###
 
-``` composer require sterling/commentable ```
+``` composer require sinclair/commentable ```
 
-Add ``` Sterling\Commentable\CommentableServiceProvider::class ``` to ``` config\app.php ```
+Add ``` Sinclair\Commentable\CommentableServiceProvider::class ``` to ``` config\app.php ```
 
 ``` php artisan vendor:publish ``` 
 

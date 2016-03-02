@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Facades;
+namespace Sinclair\Commentable\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
