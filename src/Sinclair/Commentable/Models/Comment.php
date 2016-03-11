@@ -2,7 +2,7 @@
 
 namespace Sinclair\Commentable\Models;
 
-use Sinclair\Commentable\Comment as CommentInterface;
+use Sinclair\Commentable\Contracts\Comment as CommentInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

@@ -1,6 +1,8 @@
-<?php namespace Sterling\Commentable;
+<?php 
 
-use Sinclair\Commentable\Comment;
+namespace Sinclair\Commentable;
+
+use Sinclair\Commentable\Models\Comment;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sterling\Commentable;
+namespace Sinclair\Commentable;
 
 use Auth;
 use Input;
@@ -25,7 +25,7 @@ trait Commentable
      */
     private static function usesCascadeSoftDeletes()
     {
-        return property_exists(get_class(), 'children') && in_array('CascadeSoftDeletes', class_uses(self::class));
+        return property_exists(get_class(), 'children') && in_array('Sinclair\CascadeSoftDeletes\CascadeSoftDeletes', class_uses(self::class));
     }
 
     /**
@@ -35,6 +35,6 @@ trait Commentable
      */
     public function comments()
     {
-        return $this->morphToMany('App\Models\Comment', 'commentable');
+        return $this->morphToMany('Sinclair\Commentable\Models\Comment', 'commentable');
     }
 }
