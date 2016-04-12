@@ -35,6 +35,6 @@ trait Commentable
      */
     public function comments()
     {
-        return $this->morphToMany('Sinclair\Commentable\Models\Comment', 'commentable');
+        return $this->morphToMany(config('commentable.comment.class'), 'commentable');
     }
 }
