@@ -14,8 +14,8 @@ trait Commentable
     public static function bootCommentable()
     {
         // add comments as a child relationship to the children array so they can be soft deleted
-        if (self::usesCascadeSoftDeletes())
-            self::addChild('comments');
+        if ( self::usesCascadeSoftDeletes() )
+            app(self::class)->addChild('comments');
     }
 
     /**
