@@ -28,11 +28,13 @@ class CommentableServiceProvider extends ServiceProvider
         ]);
 
         $this->publishes([
-            __DIR__ . '/Models/'              => app_path('Models'),
-            __DIR__ . '/Contracts/'           => app_path('Contracts'),
-            __DIR__ . '/../../../migrations/' => database_path('migrations'),
-            __DIR__ . '/../../../config/'     => config_path()
-        ]);
+            __DIR__ . '/../../migrations' => database_path('migrations'),
+        ], 'migrations');
+
+        $this->publishes([
+
+            __DIR__ . '/../../config/' => config_path()
+        ], 'config');
     }
 
     /**
@@ -54,7 +56,7 @@ class CommentableServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [ ];
+        return [];
     }
 
 }

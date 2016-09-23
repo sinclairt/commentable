@@ -1,14 +1,6 @@
-# README #
+# Commentable #
 
-### Ingredients ###
-* Commentable Trait
-* Comment Model
-* Comments Table migration
-* Comentables Table migration
-* Commentable Service Provider
-* Commentable config
-
-### Instructions ###
+###Installation
 
 ``` composer require sinclair/commentable ```
 
@@ -18,20 +10,9 @@ Add ``` Sinclair\Commentable\CommentableServiceProvider::class ``` to ``` config
 
 Run the migrations ``` php artisan migrate ```
 
-### Usage ###
-Use the trait ``` use Commentable; ``` in your model.
+###Usage
+Set your user class in the commentable config file.
 
-Add some logic to save comments against your model i.e. 
-``` php
-$machine = Machine::save(['name' => 'Machine 1']);
+Use the trait ``` use Commentable; ``` in your model. now you can create comments against objects in your app.
 
-$machine->comments()->save(new Comment(['text' => Input::get('comment'), 'user_id' => Auth::id()]));
-```
-
-### Considerations ###
-
-The Comment model requires the user id and has a user relationship which get its reference from the ``` commentable.user.class ``` config value, make sure you update this if your user model is not ``` App\User ```. The model can be published to be edited if needs be.
-
-NOTE: You must update the namespace of the published model, so it does not clash with the vendor class, then add this fully qualified class to the config file.
-
-The trait has consideration for the ``` CascadeSoftDeletes ``` Trait, and adds ``` comments ``` to the ``` $children ``` array.
+*Please note that the relationship is now a polymorphic one-to-many, a comment can belong to any ONE object, and an object can have MANY comments. It is no longer many-to-many.*

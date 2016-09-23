@@ -4,6 +4,10 @@ namespace Sinclair\Commentable\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * Class Comment
+ * @package Sinclair\Commentable\Facades
+ */
 class Comment extends Facade
 {
     /**
@@ -11,5 +15,8 @@ class Comment extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'Comment'; }
+    protected static function getFacadeAccessor()
+    {
+        return 'Comment';
+    }
 }

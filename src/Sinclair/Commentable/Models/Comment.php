@@ -2,11 +2,14 @@
 
 namespace Sinclair\Commentable\Models;
 
-use Exception;
 use Sinclair\Commentable\Contracts\Comment as CommentInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Comment
+ * @package Sinclair\Commentable\Models
+ */
 class Comment extends Model implements CommentInterface
 {
     use SoftDeletes;
@@ -16,14 +19,14 @@ class Comment extends Model implements CommentInterface
      *
      * @var array
      */
-    protected $fillable = [ 'text', 'user_id', 'resolution' ];
+    protected $fillable = [ 'text', 'user_id', 'commentable_type', 'commentable_id' ];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = [ ];
+    protected $hidden = [];
 
     /**
      * The dates that are returned as Carbon objects
@@ -40,53 +43,22 @@ class Comment extends Model implements CommentInterface
         return $this->belongsTo(config('commentable.user.class'));
     }
 
-    public function __call( $name, $arguments )
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function commentable()
     {
-        try
-        {
-            if ( in_array($name, array_keys($this->getAttributes())) )
-                return parent::__call($name, $arguments);
-
-            if ( method_exists($this, $name) )
-                return call_user_func_array($name, $arguments);
-
-            $model = app(studly_case(str_singular($name)));
-
-            $model = new \ReflectionClass($model);
-
-            return $this->morphedByMany($model->getName(), 'commentable');
-        }
-        catch ( Exception $e )
-        {
-            return parent::__call($name, $arguments);
-        }
+        return $this->morphTo('commentable');
     }
 
-    public static function __callStatic( $name, $arguments )
+    /**
+     * @param $query
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function scopeByUser( $query, $user )
     {
-        return self::__call($name, $arguments);
-    }
-
-    public function __get( $name )
-    {
-        try
-        {
-            if ( in_array($name, array_keys($this->getAttributes())) )
-                return parent::__get($name);
-
-            if ( method_exists($this, $name) )
-                return call_user_func($name);
-
-            $model = app(studly_case(str_singular($name)));
-
-            $model = new \ReflectionClass($model);
-
-            return $this->relations[ $name ] = $this->morphedByMany($model->getName(), 'commentable')
-                                                    ->getResults();
-        }
-        catch ( Exception $e )
-        {
-            return parent::__get($name);
-        }
+        return $query->where('user_id', $user->id);
     }
 }
