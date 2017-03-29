@@ -1,5 +1,5 @@
 {
-  "name": "sinclair/commentable",
+  "name": "sinclairt/commentable",
   "description": "Add comments to objects",
   "type": "Library",
   "require": {
