@@ -1,8 +1,8 @@
 # Commentable #
 
-###Installation
+### Installation
 
-``` composer require sinclair/commentable ```
+``` composer require sinclairt/commentable ```
 
 Add ``` Sinclair\Commentable\CommentableServiceProvider::class ``` to ``` config\app.php ```
 
@@ -10,7 +10,7 @@ Add ``` Sinclair\Commentable\CommentableServiceProvider::class ``` to ``` config
 
 Run the migrations ``` php artisan migrate ```
 
-###Usage
+### Usage
 Set your user class in the commentable config file.
 
 Use the trait ``` use Commentable; ``` in your model. now you can create comments against objects in your app.
